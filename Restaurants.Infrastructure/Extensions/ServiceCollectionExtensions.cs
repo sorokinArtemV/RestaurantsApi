@@ -20,7 +20,6 @@ public static class ServiceCollectionExtensions
         
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
-        services.AddScoped<IRestaurantsService, RestaurantsService>();
     }
     
     public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)

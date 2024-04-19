@@ -1,6 +1,6 @@
 using Restaurants.Core.Entities;
 
-namespace Restaurants.Application.Services;
+namespace Restaurants.Application.ServiceContracts;
 
 public interface IRestaurantsService
 {

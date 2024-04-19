@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Restaurants.Application.ServiceContracts;
 using Restaurants.Core.Entities;
 using Restaurants.Core.RepositoryContracts;
 
