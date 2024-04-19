@@ -6,7 +6,7 @@ namespace Restaurants.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddInfrastructure(this IServiceCollection services)
+    public static void AddApplication(this IServiceCollection services)
     {
         services.AddScoped<IRestaurantsService, RestaurantsService>();
     }
