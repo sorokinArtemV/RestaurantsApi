@@ -15,4 +15,11 @@ public class RestaurantsService(
         
         return restaurants;
     }
+
+    public async Task<Restaurant?> GetRestaurantById(int id)
+    {
+        logger.LogInformation("Getting restaurant by id: {Id}", id);
+        
+        return await repository.GetByIdAsync(id);
+    }
 }
