@@ -3,15 +3,8 @@ using Restaurants.Core.Entities;
 
 namespace Restaurants.Infrastructure.DatabaseContext;
 
-public class RestaurantsDbContext : DbContext
+public class RestaurantsDbContext(DbContextOptions options) : DbContext(options)
 {
-    public RestaurantsDbContext(DbContextOptions options) : base(options)
-    {
-    }
-
-    public RestaurantsDbContext()
-    {
-    }
 
     public DbSet<Restaurant> Restaurants { get; set; }
     public DbSet<Dish> Dishes { get; set; }
