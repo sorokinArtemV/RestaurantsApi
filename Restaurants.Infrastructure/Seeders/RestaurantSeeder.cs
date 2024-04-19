@@ -3,7 +3,7 @@ using Restaurants.Infrastructure.DatabaseContext;
 
 namespace Restaurants.Infrastructure.Seeders;
 
-public class RestaurantSeeder(RestaurantsDbContext dbContext)
+public class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeeder
 {
     public async Task Seed()
     {
@@ -11,6 +11,8 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext)
             if (!dbContext.Restaurants.Any())
             {
                 var restaurants = GetRestaurants();
+                dbContext.Restaurants.AddRange(restaurants);
+                await dbContext.SaveChangesAsync();
             }
     }
 
@@ -21,6 +23,7 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext)
             new Restaurant
             {
                 Name = "McDonalds",
+                Category = "Fast food",
                 Description =
                     "McDonald's Corporation (McDonald's) is one of the world's " +
                     "largest and most recognized fast-food chains, known for its hamburgers, french " +
@@ -56,6 +59,7 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext)
             new Restaurant
             {
                 Name = "Wendy's",
+                Category = "Fast food",
                 Description =
                     "Wendy's is an international fast-food chain known for its square hamburgers, " +
                     "sea salt fries, and Frosty, a form of soft serve ice cream mixed with starches.",
