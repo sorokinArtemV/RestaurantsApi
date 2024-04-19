@@ -1,5 +1,4 @@
 using Restaurants.Infrastructure.Extensions;
-using Restaurants.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
 
 var app = builder.Build();
 
