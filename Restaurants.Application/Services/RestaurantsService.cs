@@ -1,11 +1,17 @@
+using Microsoft.Extensions.Logging;
 using Restaurants.Core.Entities;
+using Restaurants.Core.RepositoryContracts;
 
 namespace Restaurants.Application.Services;
 
-public class RestaurantsService
+public class RestaurantsService(
+    IRestaurantsRepository repository, ILogger<RestaurantsService> logger) : IRestaurantsService
 {
-    public Task<IEnumerable<Restaurant>> GetAllRestaurants()
+    public async Task<IEnumerable<Restaurant>> GetAllRestaurants()
     {
-        throw new NotImplementedException();
+        logger.LogInformation("Getting all restaurants");
+        var restaurants = await repository.GetAllAsync();
+        
+        return restaurants;
     }
 }
