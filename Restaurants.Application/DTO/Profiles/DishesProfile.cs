@@ -1,6 +1,12 @@
+using AutoMapper;
+using Restaurants.Core.Entities;
+
 namespace Restaurants.Application.DTO.Profiles;
 
-public class DishesProfile
+public class DishesProfile : Profile
 {
-    
+    public DishesProfile()
+    {
+        CreateMap<Dish, DishDto>().ReverseMap();
+    }
 }
