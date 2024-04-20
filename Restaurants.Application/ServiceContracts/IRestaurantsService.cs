@@ -1,4 +1,5 @@
 using Restaurants.Application.DTO;
+using Restaurants.Application.DTO.Restaurant;
 using Restaurants.Core.Entities;
 
 namespace Restaurants.Application.ServiceContracts;

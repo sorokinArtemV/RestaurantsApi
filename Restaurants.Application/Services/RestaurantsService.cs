@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Restaurants.Application.DTO;
+using Restaurants.Application.DTO.Restaurant;
 using Restaurants.Application.ServiceContracts;
 using Restaurants.Core.RepositoryContracts;
 
