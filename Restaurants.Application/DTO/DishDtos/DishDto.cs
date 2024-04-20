@@ -1,4 +1,4 @@
-namespace Restaurants.Application.DTO.Dish;
+namespace Restaurants.Application.DTO.DishDtos;
 
 public class DishDto
 {
@@ -6,7 +6,6 @@ public class DishDto
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
     public decimal Price { get; set; }
-    
-    public int? Kicalories { get; set; }
 
+    public int? Kicalories { get; set; }
 }

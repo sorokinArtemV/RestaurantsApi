@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Application.DTO;
-using Restaurants.Application.DTO.Restaurant;
+using Restaurants.Application.DTO.RestaurantDtos;
 using Restaurants.Application.ServiceContracts;
 using Restaurants.Core.Entities;
 
@@ -25,13 +24,25 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
         var restaurant = await restaurantsService.GetRestaurantById(id);
 
         return restaurant is null
-            ? Problem("Restaurant not found", statusCode: 400, title: "Restaurant search")
+            ? Problem("RestaurantDtos not found", statusCode: 400, title: "RestaurantDtos search")
             : Ok(restaurant);
     }
 
     [HttpPost]
-    public async Task<ActionResult<Restaurant>> AddRestaurant(RestaurantDto restaurantDto)
+    public async Task<ActionResult<Restaurant>> AddRestaurant([Bind(
+            nameof(restaurantAddDto.Name),
+            nameof(restaurantAddDto.Description),
+            nameof(restaurantAddDto.Category),
+            nameof(restaurantAddDto.HasDelivery),
+            nameof(restaurantAddDto.ContactEmail),
+            nameof(restaurantAddDto.ContactNumber),
+            nameof(restaurantAddDto.City),
+            nameof(restaurantAddDto.Street),
+            nameof(restaurantAddDto.PostalCode))]
+        RestaurantAddDto restaurantAddDto)
     {
-        throw new NotImplementedException();
+        var id = await restaurantsService.AddRestaurant(restaurantAddDto);
+
+        return CreatedAtAction(nameof(GetRestaurantById), new { id }, null);
     }
 }

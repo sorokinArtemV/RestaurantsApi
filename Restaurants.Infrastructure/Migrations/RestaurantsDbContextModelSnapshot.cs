@@ -16,7 +16,7 @@ namespace Restaurants.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
-            modelBuilder.Entity("Restaurants.Core.Entities.Dish", b =>
+            modelBuilder.Entity("Restaurants.Core.Entities.DishDtos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace Restaurants.Infrastructure.Migrations
                     b.ToTable("Dishes");
                 });
 
-            modelBuilder.Entity("Restaurants.Core.Entities.Restaurant", b =>
+            modelBuilder.Entity("Restaurants.Core.Entities.RestaurantDtos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,16 +75,16 @@ namespace Restaurants.Infrastructure.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("Restaurants.Core.Entities.Dish", b =>
+            modelBuilder.Entity("Restaurants.Core.Entities.DishDtos", b =>
                 {
-                    b.HasOne("Restaurants.Core.Entities.Restaurant", null)
+                    b.HasOne("Restaurants.Core.Entities.RestaurantDtos", null)
                         .WithMany("Dishes")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurants.Core.Entities.Restaurant", b =>
+            modelBuilder.Entity("Restaurants.Core.Entities.RestaurantDtos", b =>
                 {
                     b.OwnsOne("Restaurants.Core.Entities.Address", "Address", b1 =>
                         {
@@ -111,7 +111,7 @@ namespace Restaurants.Infrastructure.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("Restaurants.Core.Entities.Restaurant", b =>
+            modelBuilder.Entity("Restaurants.Core.Entities.RestaurantDtos", b =>
                 {
                     b.Navigation("Dishes");
                 });
