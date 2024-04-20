@@ -1,9 +1,10 @@
+using Restaurants.Application.DTO;
 using Restaurants.Core.Entities;
 
 namespace Restaurants.Application.ServiceContracts;
 
 public interface IRestaurantsService
 {
-    Task<IEnumerable<Restaurant>> GetAllRestaurants();
-    Task<Restaurant?> GetRestaurantById(int id);
+    Task<IEnumerable<RestaurantDto>> GetAllRestaurants();
+    Task<RestaurantDto?> GetRestaurantById(int id);
 }
