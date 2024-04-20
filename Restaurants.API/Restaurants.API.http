@@ -9,3 +9,20 @@ GET {{Restaurants.API_HostAddress}}/api/Restaurants
 ###
 
 GET {{Restaurants.API_HostAddress}}/api/Restaurants/1
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/Restaurants
+Content-Type: application/json
+
+{
+    "Name": "Tasty and .NET",
+    "Description": "Tasty.NET is a fast food restaurant",
+    "Category": "Fast food",
+    "HasDelivery": true,
+    "ContactEmail": "j8yQh@example.com",
+    "ContactNumber": "123456789",
+    "City": "Moscow",
+    "Street": "Main Street",
+    "PostalCode": "W1 1AA"
+}

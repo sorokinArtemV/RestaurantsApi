@@ -29,17 +29,7 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
     }
 
     [HttpPost]
-    public async Task<ActionResult<Restaurant>> AddRestaurant([Bind(
-            nameof(restaurantAddDto.Name),
-            nameof(restaurantAddDto.Description),
-            nameof(restaurantAddDto.Category),
-            nameof(restaurantAddDto.HasDelivery),
-            nameof(restaurantAddDto.ContactEmail),
-            nameof(restaurantAddDto.ContactNumber),
-            nameof(restaurantAddDto.City),
-            nameof(restaurantAddDto.Street),
-            nameof(restaurantAddDto.PostalCode))]
-        RestaurantAddDto restaurantAddDto)
+    public async Task<ActionResult<Restaurant>> AddRestaurant(RestaurantAddDto restaurantAddDto)
     {
         var id = await restaurantsService.AddRestaurant(restaurantAddDto);
 
