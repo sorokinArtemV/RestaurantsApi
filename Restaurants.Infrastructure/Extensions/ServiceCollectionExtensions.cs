@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<RestaurantsDbContext>(options =>
         {
             options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            options.EnableSensitiveDataLogging();
         });
         
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
