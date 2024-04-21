@@ -8,7 +8,7 @@ GET {{Restaurants.API_HostAddress}}/api/Restaurants
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/Restaurants/1
+GET {{Restaurants.API_HostAddress}}/api/Restaurants/4
 
 ###
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{Restaurants.API_HostAddress}}/api/Restaurants/1
+DELETE {{Restaurants.API_HostAddress}}/api/Restaurants/7
 
 ###
 

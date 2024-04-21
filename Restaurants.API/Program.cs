@@ -1,7 +1,10 @@
 using Restaurants.Application.Extensions;
 using Restaurants.Infrastructure.Extensions;
 using Serilog;
-using Serilog.Events;
+using Serilog.Events;using Serilog.Formatting.Compact;
+
+// "formatter": "Serilog.Formatting.Compact.CompactJasonFormatter, Serilog.Formatting.Compact"
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +20,9 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration);
 });
 
-var app = builder.Build();
 
+
+var app = builder.Build();
 
 await app.Services.InitializeDatabaseAsync();
 
