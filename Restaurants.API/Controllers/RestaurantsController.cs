@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants.Commands.AddRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
+using Restaurants.Application.Restaurants.DTO;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
-using Restaurants.Core.Entities;
 
 namespace Restaurants.API.Controllers;
 
@@ -14,7 +14,7 @@ namespace Restaurants.API.Controllers;
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Restaurant>>> GetAllRestaurants()
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurants()
     {
         var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
 
@@ -23,7 +23,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<Restaurant>> GetRestaurantById(int id)
+    public async Task<ActionResult<RestaurantDto>> GetRestaurantById(int id)
     {
         var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
 
@@ -33,7 +33,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Restaurant>> AddRestaurant(AddRestaurantCommand command)
+    public async Task<IActionResult> AddRestaurant(AddRestaurantCommand command)
     {
         var id = await mediator.Send(command);
 
@@ -42,7 +42,9 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
     [HttpPatch]
     [Route("{id}")]
-    public async Task<ActionResult<Restaurant>> UpdateRestaurant(int id, UpdateRestaurantCommand command)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateRestaurant(int id, UpdateRestaurantCommand command)
     {
         command.Id = id;
 
@@ -56,7 +58,9 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<ActionResult<Restaurant>> DeleteRestaurant(int id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> DeleteRestaurant(int id)
     {
         var isDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
 

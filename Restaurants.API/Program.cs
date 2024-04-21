@@ -2,7 +2,6 @@ using Restaurants.Application.Extensions;
 using Restaurants.Infrastructure.Extensions;
 using Serilog;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,8 +22,11 @@ await app.Services.InitializeDatabaseAsync();
 // Configure the HTTP request pipeline.
 app.UseSerilogRequestLogging();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHsts();
 app.UseHttpsRedirection();
