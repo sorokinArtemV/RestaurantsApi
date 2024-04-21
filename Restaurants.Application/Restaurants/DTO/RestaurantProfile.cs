@@ -1,7 +1,7 @@
 using AutoMapper;
 using Restaurants.Core.Entities;
 
-namespace Restaurants.Application.DTO.RestaurantDtos;
+namespace Restaurants.Application.Restaurants.DTO;
 
 public class RestaurantProfile : Profile
 {

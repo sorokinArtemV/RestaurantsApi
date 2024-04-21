@@ -1,7 +1,7 @@
 using FluentValidation;
-using Restaurants.Application.DTO.RestaurantDtos;
+using Restaurants.Application.Restaurants.DTO;
 
-namespace Restaurants.Application.Validators;
+namespace Restaurants.Application.Restaurants.Validators;
 
 public class RestaurantAddDtoValidator : AbstractValidator<RestaurantAddDto>
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Application.DTO.RestaurantDtos;
-using Restaurants.Application.ServiceContracts;
+using Restaurants.Application.Restaurants.DTO;
+using Restaurants.Application.Restaurants.ServiceContracts;
 using Restaurants.Core.Entities;
 
 namespace Restaurants.API.Controllers;
@@ -24,7 +24,7 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
         var restaurant = await restaurantsService.GetRestaurantById(id);
 
         return restaurant is null
-            ? Problem("RestaurantDtos not found", statusCode: 400, title: "RestaurantDtos search")
+            ? Problem("Restaurants not found", statusCode: 400, title: "Restaurant search")
             : Ok(restaurant);
     }
 

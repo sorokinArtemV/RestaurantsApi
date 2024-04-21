@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Restaurants.Application.Services;
 using Restaurants.Core.RepositoryContracts;
 using Restaurants.Infrastructure.DatabaseContext;
 using Restaurants.Infrastructure.Repositories;
