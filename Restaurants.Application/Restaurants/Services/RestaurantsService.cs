@@ -12,17 +12,6 @@ public class RestaurantsService(
     IMapper mapper
 ) : IRestaurantsService
 {
-    public async Task<IEnumerable<RestaurantDto>> GetAllRestaurants()
-    {
-        logger.LogInformation("Getting all restaurants");
-        
-        var restaurants = await repository.GetAllAsync();
-
-        var restaurantsDto = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
-
-        return restaurantsDto;
-    }
-
     public async Task<RestaurantDto?> GetRestaurantById(int id)
     {
         logger.LogInformation("Getting restaurant by id: {Id}", id);

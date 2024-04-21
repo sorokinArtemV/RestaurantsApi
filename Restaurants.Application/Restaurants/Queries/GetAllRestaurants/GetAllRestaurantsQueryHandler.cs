@@ -18,7 +18,6 @@ public class GetAllRestaurantsQueryHandler(
         logger.LogInformation("Getting all restaurants");
         
         var restaurants = await repository.GetAllAsync();
-
         var restaurantsDto = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
         return restaurantsDto;
