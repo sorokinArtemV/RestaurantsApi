@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Restaurants.Core.RepositoryContracts;
@@ -7,8 +6,7 @@ namespace Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 
 public class DeleteRestaurantCommandHandler(
     ILogger<DeleteRestaurantCommandHandler> logger,
-    IRestaurantsRepository repository,
-    IMapper mapper
+    IRestaurantsRepository repository
 ) : IRequestHandler<DeleteRestaurantCommand, bool>
 {
     public async Task<bool> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
@@ -20,7 +18,7 @@ public class DeleteRestaurantCommandHandler(
         if (restaurant is null) return false;
 
         await repository.DeleteAsync(restaurant);
-        
+
         return true;
     }
 }
