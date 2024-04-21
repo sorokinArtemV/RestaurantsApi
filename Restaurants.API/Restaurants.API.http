@@ -16,15 +16,15 @@ POST {{Restaurants.API_HostAddress}}/api/Restaurants
 Content-Type: application/json
 
 {
-  "Name": "Tasty and .NET",
-  "Description": "Tasty.NET is a fast food restaurant",
-  "Category": "Fast food",
+  "Name": "Tasty Test",
+  "Description": "Tasty Test is a fast food restaurant",
+  "Category": "American",
   "HasDelivery": true,
   "ContactEmail": "j8yQh@example.com",
-  "ContactNumber": "123456789",
-  "City": "Moscow",
+  "ContactNumber": "1234567890",
+  "City": "Startholme",
   "Street": "Main Street",
-  "PostalCode": "W1 1AA"
+  "PostalCode": "111111"
 }
 
 ###
@@ -37,7 +37,7 @@ PATCH {{Restaurants.API_HostAddress}}/api/Restaurants/4
 Content-Type: application/json
 
 {
-  "Name": "Tasty and .NET",
-  "Description": "Tasty.NET is a fast food restaurant",
+  "Name": "Changes made",
+  "Description": "Changes made",
   "HasDelivery": true
 }
