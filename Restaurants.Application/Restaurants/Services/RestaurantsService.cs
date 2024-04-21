@@ -2,7 +2,6 @@ using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Restaurants.Application.Restaurants.DTO;
 using Restaurants.Application.Restaurants.ServiceContracts;
-using Restaurants.Core.Entities;
 using Restaurants.Core.RepositoryContracts;
 
 namespace Restaurants.Application.Restaurants.Services;
@@ -34,14 +33,5 @@ public class RestaurantsService(
 
         return restaurantDto;
     }
-
-    public async Task<int> AddRestaurant(RestaurantAddDto dto)
-    {
-        logger.LogInformation("Adding new restaurant: {Name}", dto.Name);
-
-        var restaurant = mapper.Map<Restaurant>(dto);
-        var id = await repository.AddAsync(restaurant);
-
-        return id;
-    }
+    
 }
