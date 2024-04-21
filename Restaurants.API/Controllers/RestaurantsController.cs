@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants.Commands.AddRestaurant;
+using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 using Restaurants.Core.Entities;
@@ -37,7 +38,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
         return CreatedAtAction(nameof(GetRestaurantById), new { id }, null);
     }
-    
+
     [HttpDelete]
     [Route("{id}")]
     public async Task<ActionResult<Restaurant>> DeleteRestaurant(int id)
@@ -45,7 +46,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
         var isDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
 
         if (isDeleted) return NoContent();
-        
+
         return Problem("Restaurant not found", statusCode: 400, title: "Restaurant deletion");
     }
 }

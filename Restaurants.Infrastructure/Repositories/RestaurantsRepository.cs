@@ -26,4 +26,10 @@ public class RestaurantsRepository(RestaurantsDbContext dbContext) : IRestaurant
 
         return entity.Id;
     }
+
+    public async Task DeleteAsync(Restaurant entity)
+    {
+        dbContext.Restaurants.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
 }
