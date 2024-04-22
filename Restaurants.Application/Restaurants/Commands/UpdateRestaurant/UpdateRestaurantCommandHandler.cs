@@ -10,9 +10,9 @@ public class UpdateRestaurantCommandHandler(
     ILogger<UpdateRestaurantCommandHandler> logger,
     IRestaurantsRepository repository,
     IMapper mapper
-) : IRequestHandler<UpdateRestaurantCommand, bool>
+) : IRequestHandler<UpdateRestaurantCommand>
 {
-    public async Task<bool> Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating restaurant: {Id} with data: {@Restaurant}", request.Id, request);
 
@@ -24,7 +24,5 @@ public class UpdateRestaurantCommandHandler(
         mapper.Map(request, restaurant);
 
         await repository.SaveChangesAsync();
-
-        return true;
     }
 }

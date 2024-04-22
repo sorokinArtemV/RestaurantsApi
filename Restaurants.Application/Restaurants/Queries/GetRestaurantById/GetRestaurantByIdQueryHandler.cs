@@ -11,9 +11,9 @@ public class GetRestaurantByIdQueryHandler(
     ILogger<GetRestaurantByIdQueryHandler> logger,
     IRestaurantsRepository repository,
     IMapper mapper
-) : IRequestHandler<GetRestaurantByIdQuery, RestaurantDto?>
+) : IRequestHandler<GetRestaurantByIdQuery, RestaurantDto>
 {
-    public async Task<RestaurantDto?> Handle(GetRestaurantByIdQuery request, CancellationToken cancellationToken)
+    public async Task<RestaurantDto> Handle(GetRestaurantByIdQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting restaurant by id: {Id}", request.Id);
 

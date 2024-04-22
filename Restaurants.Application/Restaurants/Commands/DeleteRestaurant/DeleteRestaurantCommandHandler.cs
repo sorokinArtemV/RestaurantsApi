@@ -8,9 +8,9 @@ namespace Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 public class DeleteRestaurantCommandHandler(
     ILogger<DeleteRestaurantCommandHandler> logger,
     IRestaurantsRepository repository
-) : IRequestHandler<DeleteRestaurantCommand, bool>
+) : IRequestHandler<DeleteRestaurantCommand>
 {
-    public async Task<bool> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting restaurant: {Id}", request.Id);
 
@@ -19,7 +19,5 @@ public class DeleteRestaurantCommandHandler(
         if (restaurant is null) throw new NotFoundException($"Restaurant with {request.Id} does not exist");
 
         await repository.DeleteAsync(restaurant);
-
-        return true;
     }
 }
