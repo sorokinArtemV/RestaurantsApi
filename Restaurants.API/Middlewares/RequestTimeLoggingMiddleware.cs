@@ -15,7 +15,7 @@ public class RequestTimeLoggingMiddleware(ILogger<RequestTimeLoggingMiddleware> 
         stopwatch.Stop();
 
         if (stopwatch.ElapsedMilliseconds / 1000 > SecondsTimeout)
-            logger.LogInformation("Request [{Verb}] at {Path} took {Elapsed} seconds", 
+            logger.LogInformation("Request [{Verb}] at {Path} took {Elapsed} seconds",
                 context.Request.Method, context.Request.Path, stopwatch.ElapsedMilliseconds / 1000);
     }
 }
