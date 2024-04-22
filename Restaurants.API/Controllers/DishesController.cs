@@ -27,4 +27,13 @@ public class DishesController(IMediator mediator) : ControllerBase
         
         return Ok(dishes);
     }
+    
+    [HttpGet("{dishId}")]
+    public async Task<ActionResult<DishDto>> GetDishByIdForRestaurant(int restaurantId, int dishId)
+    {
+        var dish = await mediator.Send(new GetDishesByIdForRestaurantQuery(restaurantId, dishId));
+        
+        return Ok(dish);
+    }
+}
 }
