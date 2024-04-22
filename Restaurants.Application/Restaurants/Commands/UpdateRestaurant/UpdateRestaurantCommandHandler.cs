@@ -18,7 +18,7 @@ public class UpdateRestaurantCommandHandler(
 
         var restaurant = await repository.GetByIdAsync(request.Id);
 
-        if (restaurant is null) throw new NotFoundException($"Restaurant with {request.Id} does not exist");
+        if (restaurant is null) throw new NotFoundException($"Restaurant with id {request.Id} does not exist");
 
 
         mapper.Map(request, restaurant);

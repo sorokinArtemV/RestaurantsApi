@@ -18,7 +18,7 @@ public class GetRestaurantByIdQueryHandler(
         logger.LogInformation("Getting restaurant by id: {Id}", request.Id);
 
         var restaurant = await repository.GetByIdAsync(request.Id) ??
-                         throw new NotFoundException($"Restaurant with {request.Id} does not exist");
+                         throw new NotFoundException($"Restaurant with id {request.Id} does not exist");
 
         var restaurantDto = mapper.Map<RestaurantDto>(restaurant);
 
