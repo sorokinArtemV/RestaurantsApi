@@ -41,3 +41,14 @@ Content-Type: application/json
   "Description": "Changes made",
   "HasDelivery": true
 }
+
+###
+POST http://localhost:5001/api/restaurants/3/dishes
+Content-Type: application/json
+
+{
+  "name": "Big Mac",
+  "description": "Two all-beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun.",
+  "price": 12.7,
+  "kiloCalories": 500
+}
