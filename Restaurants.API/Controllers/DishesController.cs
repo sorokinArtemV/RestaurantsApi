@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Dishes.Commands.AddDish;
 using Restaurants.Application.Dishes.DTO;
+using Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 
 namespace Restaurants.API.Controllers;
 
@@ -20,10 +21,10 @@ public class DishesController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<DishDto>> GetAllDishesForRestaurant(int restaurantId)
+    public async Task<ActionResult<IEnumerable<DishDto>>> GetAllDishesForRestaurant(int restaurantId)
     {
-        var dishes = await mediator.GetDishesForRestaurantQuery(restaurantId);
-
+        var dishes = await mediator.Send(new GetDishesForRestaurantQuery(restaurantId));
+        
         return Ok(dishes);
     }
 }
