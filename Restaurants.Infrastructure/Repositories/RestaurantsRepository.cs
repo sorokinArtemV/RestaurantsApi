@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Restaurants.Core.Entities;
+using Restaurants.Core.Domain.Entities;
 using Restaurants.Core.RepositoryContracts;
 using Restaurants.Infrastructure.DatabaseContext;
 

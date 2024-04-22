@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Restaurants.Core.Exceptions;
 using Restaurants.Core.RepositoryContracts;
 
 namespace Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
@@ -15,7 +16,7 @@ public class DeleteRestaurantCommandHandler(
 
         var restaurant = await repository.GetByIdAsync(request.Id);
 
-        if (restaurant is null) return false;
+        if (restaurant is null) throw new NotFoundException($"Restaurant with {request.Id} does not exist");
 
         await repository.DeleteAsync(restaurant);
 

@@ -1,4 +1,4 @@
-using Restaurants.Core.Entities;
+using Restaurants.Core.Domain.Entities;
 using Restaurants.Infrastructure.DatabaseContext;
 
 namespace Restaurants.Infrastructure.Seeders;
@@ -92,7 +92,7 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeede
                 ]
             }
         ];
-        
+
         return restaurants;
     }
 }

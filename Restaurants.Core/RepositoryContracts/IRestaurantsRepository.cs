@@ -1,4 +1,4 @@
-using Restaurants.Core.Entities;
+using Restaurants.Core.Domain.Entities;
 
 namespace Restaurants.Core.RepositoryContracts;
 
