@@ -10,8 +10,6 @@ namespace Restaurants.Application.Dishes.Queries.GetDishByIdForRestaurant;
 
 public class GetDishByIdForRestaurantQueryHandler(
     ILogger<GetDishByIdForRestaurantQueryHandler> logger,
-    IMediator mediator,
-    IDishesRepository dishesRepository,
     IRestaurantsRepository restaurantsRepository,
     IMapper mapper
 )
