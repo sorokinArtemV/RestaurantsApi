@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Restaurants.Application.Dishes.Commands.AddDish;
 
-public class AddDishCommand : IRequest
+public class AddDishCommand : IRequest<int>
 {
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
