@@ -10,7 +10,13 @@ public class DishesRepository(RestaurantsDbContext dbContext) : IDishesRepositor
     {
         await dbContext.Dishes.AddAsync(entity);
         await dbContext.SaveChangesAsync();
-        
+
         return entity.Id;
+    }
+
+    public async Task DeleteAsync(IEnumerable<Dish>? entities)
+    {
+        dbContext.Dishes.RemoveRange(entities);
+        await dbContext.SaveChangesAsync();
     }
 }
