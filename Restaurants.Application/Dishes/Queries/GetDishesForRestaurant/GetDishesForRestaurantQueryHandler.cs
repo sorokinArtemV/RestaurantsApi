@@ -11,7 +11,6 @@ namespace Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 public class GetDishesForRestaurantQueryHandler(
     ILogger<GetDishesForRestaurantQueryHandler> logger,
     IRestaurantsRepository restaurantsRepository,
-    IDishesRepository dishesRepository,
     IMapper mapper
     )
     : IRequestHandler<GetDishesForRestaurantQuery, IEnumerable<DishDto>>

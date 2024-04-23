@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5001/api/restaurants/4/dishes
+POST {{Restaurants.API_HostAddress}}/api/restaurants/4/dishes
 Content-Type: application/json
 
 {
@@ -54,15 +54,33 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5001/api/restaurants/4/dishes
+GET {{Restaurants.API_HostAddress}}/api/restaurants/4/dishes
 Content-Type: application/json
 
 ###
-GET http://localhost:5001/api/restaurants/1/dishes/1
+GET {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes/1
 Content-Type: application/json
 
 ###
-DELETE http://localhost:5001/api/restaurants/1/dishes/1
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes/1
 Content-Type: application/json
 
+###
 
+POST {{Restaurants.API_HostAddress}}/register
+Content-Type: application/json
+
+{
+  "email": "testuser1@example.com",
+  "password": "111111"
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/login
+Content-Type: application/json
+
+{
+  "email": "testuser1@example.com",
+  "password": "111111"
+}
