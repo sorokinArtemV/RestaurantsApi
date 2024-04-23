@@ -52,3 +52,14 @@ Content-Type: application/json
   "price": 12.7,
   "kiloCalories": 500
 }
+
+###
+GET http://localhost:5001/api/restaurants/1/dishes
+Content-Type: application/json
+
+###
+GET http://localhost:5001/api/restaurants/1/dishes/1
+Content-Type: application/json
+
+
+
