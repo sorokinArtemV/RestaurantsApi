@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Restaurants.API.Middlewares;
 using Restaurants.Application.Extensions;
 using Restaurants.Core.Domain.Identity;
@@ -10,7 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(opt =>
+{
+    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer"
+    });
+
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+        }] = []
+    });
+});
+
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<ExceptionHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
