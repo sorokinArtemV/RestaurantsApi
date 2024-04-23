@@ -2,8 +2,8 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Restaurants.Core.Domain.Entities;
+using Restaurants.Core.Domain.RepositoryContracts;
 using Restaurants.Core.Exceptions;
-using Restaurants.Core.RepositoryContracts;
 
 namespace Restaurants.Application.Dishes.Commands.AddDish;
 

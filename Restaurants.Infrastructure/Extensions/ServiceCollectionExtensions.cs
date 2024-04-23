@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Restaurants.Core.RepositoryContracts;
+using Restaurants.Core.Domain.Identity;
+using Restaurants.Core.Domain.RepositoryContracts;
 using Restaurants.Infrastructure.DatabaseContext;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -17,6 +18,9 @@ public static class ServiceCollectionExtensions
             options.UseSqlite(config.GetConnectionString("DefaultConnection"));
             options.EnableSensitiveDataLogging();
         });
+
+        services.AddIdentityApiEndpoints<User>()
+            .AddEntityFrameworkStores<RestaurantsDbContext>();
         
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();

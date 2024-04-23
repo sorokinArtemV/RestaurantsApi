@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Restaurants.Application.Restaurants.DTO;
-using Restaurants.Core.RepositoryContracts;
+using Restaurants.Core.Domain.RepositoryContracts;
 
 namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 
