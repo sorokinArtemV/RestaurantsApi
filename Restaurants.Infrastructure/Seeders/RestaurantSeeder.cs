@@ -16,6 +16,13 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeede
                 dbContext.Restaurants.AddRange(restaurants);
                 await dbContext.SaveChangesAsync();
             }
+
+        if (!dbContext.Roles.Any())
+        {
+            var roles = GetRoles();
+            dbContext.Roles.AddRange(roles);
+            await dbContext.SaveChangesAsync();
+        }
     }
 
     private IEnumerable<IdentityRole> GetRoles()
@@ -26,6 +33,8 @@ public class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeede
             new IdentityRole(UserRoles.Owner),
             new IdentityRole(UserRoles.Admin)
         ];
+        
+        return roles;
     }
 
     private IEnumerable<Restaurant> GetRestaurants()
