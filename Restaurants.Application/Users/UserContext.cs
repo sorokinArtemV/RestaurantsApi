@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 
-namespace Restaurants.Application.User;
+namespace Restaurants.Application.Users;
 
 public interface IUserContext
 {
@@ -14,7 +14,7 @@ public class UserContext(IHttpContextAccessor contextAccessor) : IUserContext
     {
         var user = contextAccessor.HttpContext?.User;
 
-        if (user == null) throw new InvalidOperationException("User context is not present");
+        if (user == null) throw new InvalidOperationException("Users context is not present");
 
         if (user.Identity is not { IsAuthenticated: true }) return null;
 
