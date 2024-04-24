@@ -3,7 +3,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace Restaurants.Application.User;
 
-public class UserContext(IHttpContextAccessor contextAccessor)
+public interface IUserContext
+{
+    CurrentUser? GetCurrentUser();
+}
+
+public class UserContext(IHttpContextAccessor contextAccessor) : IUserContext
 {
     public CurrentUser? GetCurrentUser()
     {
