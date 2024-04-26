@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Restaurants.Core.Domain.Identity;
 using Restaurants.Core.Exceptions;
 
-namespace Restaurants.Application.Users.Commands;
+namespace Restaurants.Application.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandHandler(
     ILogger<UpdateUserCommandHandler> logger,
@@ -16,14 +16,14 @@ public class UpdateUserCommandHandler(
         var user = userContext.GetCurrentUser();
 
         logger.LogInformation("Updating user {Id}: {@Users}", user!.Id, request);
-        
+
         var dbUser = await userStore.FindByIdAsync(user.Id, cancellationToken);
-        
-        if(dbUser is null) throw new NotFoundException(nameof(User), user.Id);
-        
+
+        if (dbUser is null) throw new NotFoundException(nameof(User), user.Id);
+
         dbUser.Nationality = request.Nationality;
         dbUser.DateOfBirth = request.DateOfBirth;
-        
+
         await userStore.UpdateAsync(dbUser, cancellationToken);
     }
 }

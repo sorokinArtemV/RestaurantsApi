@@ -1,0 +1,26 @@
+using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Restaurants.Core.Domain.Identity;
+using Restaurants.Core.Exceptions;
+
+namespace Restaurants.Application.Users.Commands.AssignUserRole;
+
+public class AssignUserRoleCommandHandler(
+    ILogger<AssignUserRoleCommandHandler> logger,
+    UserManager<User> userManager,
+    RoleManager<IdentityRole> roleManager) : IRequestHandler<AssignUserRoleCommand>
+{
+    public async Task Handle(AssignUserRoleCommand request, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Assigning user role {@Request}", request);
+
+        var user = await userManager.FindByIdAsync(request.UserEmail) ??
+                   throw new NotFoundException(nameof(User), request.UserEmail);
+
+        var role = await roleManager.FindByIdAsync(request.RoleName) ??
+                   throw new NotFoundException(nameof(IdentityRole), request.RoleName);
+
+        await userManager.AddToRoleAsync(user, role.Name!);
+    }
+}
