@@ -33,6 +33,9 @@ public static class ServiceCollectionExtensions
 
         services.AddAuthorizationBuilder().AddPolicy(PolicyNames.HasNationality,
             policy => policy.RequireClaim(AppClaimTypes.Nationality, "jp"));
+
+        services.AddAuthorizationBuilder().AddPolicy(PolicyNames.AtLeast20,
+            policy => policy.AddRequirements());
     }
 
     public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)

@@ -21,7 +21,13 @@ public class UserContext(IHttpContextAccessor contextAccessor) : IUserContext
         var userId = user.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
         var email = user.FindFirst(x => x.Type == ClaimTypes.Email)!.Value;
         var roles = user.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value);
-        
-        return new CurrentUser(userId, email, roles);
+        var nationality = user.FindFirst(x => x.Type == "Nationality")?.Value;
+
+        var dateOfBirthString = user.FindFirst(x => x.Type == "DateOfBirth")?.Value;
+        var dateOfBirth = dateOfBirthString == null
+            ? (DateOnly?)null
+            : DateOnly.ParseExact(dateOfBirthString, "yyyy MMMM dd");
+
+        return new CurrentUser(userId, email, roles, nationality, dateOfBirth);
     }
 }
