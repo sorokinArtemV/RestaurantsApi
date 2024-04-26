@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Restaurants.Core.Domain.Identity;
 using Restaurants.Core.Domain.RepositoryContracts;
 using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Authorization.Constants;
+using Restaurants.Infrastructure.Authorization.Requirements;
 using Restaurants.Infrastructure.DatabaseContext;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -35,7 +37,9 @@ public static class ServiceCollectionExtensions
             policy => policy.RequireClaim(AppClaimTypes.Nationality, "jp"));
 
         services.AddAuthorizationBuilder().AddPolicy(PolicyNames.AtLeast20,
-            policy => policy.AddRequirements());
+            policy => policy.AddRequirements(new MinimumAgeRequirement(20)));
+
+        services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
     }
 
     public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)
