@@ -15,10 +15,10 @@ public class AssignUserRoleCommandHandler(
     {
         logger.LogInformation("Assigning user role {@Request}", request);
 
-        var user = await userManager.FindByIdAsync(request.UserEmail) ??
+        var user = await userManager.FindByEmailAsync(request.UserEmail) ??
                    throw new NotFoundException(nameof(User), request.UserEmail);
 
-        var role = await roleManager.FindByIdAsync(request.RoleName) ??
+        var role = await roleManager.FindByNameAsync(request.RoleName) ??
                    throw new NotFoundException(nameof(IdentityRole), request.RoleName);
 
         await userManager.AddToRoleAsync(user, role.Name!);
