@@ -34,7 +34,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IDishesRepository, DishesRepository>();
 
         services.AddAuthorizationBuilder().AddPolicy(PolicyNames.HasNationality,
-            policy => policy.RequireClaim(AppClaimTypes.Nationality, "jp"));
+            policy => policy.RequireClaim(AppClaimTypes.Nationality, "Japanese"));
 
         services.AddAuthorizationBuilder().AddPolicy(PolicyNames.AtLeast20,
             policy => policy.AddRequirements(new MinimumAgeRequirement(20)));

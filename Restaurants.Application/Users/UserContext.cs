@@ -26,7 +26,7 @@ public class UserContext(IHttpContextAccessor contextAccessor) : IUserContext
         var dateOfBirthString = user.FindFirst(x => x.Type == "DateOfBirth")?.Value;
         var dateOfBirth = dateOfBirthString == null
             ? (DateOnly?)null
-            : DateOnly.ParseExact(dateOfBirthString, "yyyy MMMM dd");
+            : DateOnly.ParseExact(dateOfBirthString, "yyyy-MM-dd");
 
         return new CurrentUser(userId, email, roles, nationality, dateOfBirth);
     }
