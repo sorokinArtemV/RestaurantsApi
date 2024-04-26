@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Core.Domain.Identity;
 using Restaurants.Core.Domain.RepositoryContracts;
+using Restaurants.Infrastructure.Authorization;
+using Restaurants.Infrastructure.Authorization.Constants;
 using Restaurants.Infrastructure.DatabaseContext;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -22,13 +24,17 @@ public static class ServiceCollectionExtensions
 
         services.AddIdentityApiEndpoints<User>()
             .AddRoles<IdentityRole>()
+            .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
             .AddEntityFrameworkStores<RestaurantsDbContext>();
-        
+
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
         services.AddScoped<IDishesRepository, DishesRepository>();
+
+        services.AddAuthorizationBuilder().AddPolicy(PolicyNames.HasNationality,
+            policy => policy.RequireClaim(AppClaimTypes.Nationality, "jp"));
     }
-    
+
     public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
