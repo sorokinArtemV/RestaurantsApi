@@ -1,3 +1,5 @@
+using Restaurants.Core.Domain.Identity;
+
 namespace Restaurants.Core.Domain.Entities;
 
 public class Restaurant
@@ -13,4 +15,7 @@ public class Restaurant
 
     public Address? Address { get; set; }
     public List<Dish>? Dishes { get; set; } = [];
+    
+    public User Owner { get; set; } = default!;
+    public string OwnerId { get; set; } = default!;
 }
