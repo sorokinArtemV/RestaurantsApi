@@ -10,18 +10,24 @@ public class ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> lo
         {
             await next.Invoke(context);
         }
-        catch(NotFoundException ex)
+        catch (NotFoundException ex)
         {
             context.Response.StatusCode = 404;
             await context.Response.WriteAsync(ex.Message);
-            
+
             logger.LogWarning(ex.Message);
         }
-        
+
+        catch (ForbidException ex)
+        {
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Access forbidden" + ex.Message);
+        }
+
         catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);
-            
+
             context.Response.StatusCode = 500;
             await context.Response.WriteAsync("Something went wrong");
         }
