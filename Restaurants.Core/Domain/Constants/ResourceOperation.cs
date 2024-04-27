@@ -1,4 +1,4 @@
-namespace Restaurants.Infrastructure.Authorization;
+namespace Restaurants.Core.Domain.Constants;
 
 public enum ResourceOperation
 {

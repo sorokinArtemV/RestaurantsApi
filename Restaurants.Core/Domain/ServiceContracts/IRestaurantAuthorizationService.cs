@@ -1,5 +1,5 @@
+using Restaurants.Core.Domain.Constants;
 using Restaurants.Core.Domain.Entities;
-using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.Core.Domain.ServiceContracts;
 
