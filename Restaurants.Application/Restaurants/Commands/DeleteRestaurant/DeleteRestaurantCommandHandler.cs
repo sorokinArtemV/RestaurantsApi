@@ -22,7 +22,7 @@ public class DeleteRestaurantCommandHandler(
 
         if (restaurant is null) throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
 
-        if (authorizationService.Authorize(restaurant, ResourceOperation.Delete)) throw new ForbidException();
+        if (!authorizationService.Authorize(restaurant, ResourceOperation.Delete)) throw new ForbidException();
         
         await repository.DeleteAsync(restaurant);
     }

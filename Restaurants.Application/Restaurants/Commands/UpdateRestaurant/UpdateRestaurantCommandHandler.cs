@@ -24,7 +24,7 @@ public class UpdateRestaurantCommandHandler(
 
         if (restaurant is null) throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
 
-        if (authorizationService.Authorize(restaurant, ResourceOperation.Update)) throw new ForbidException();
+        if (!authorizationService.Authorize(restaurant, ResourceOperation.Update)) throw new ForbidException();
         
         mapper.Map(request, restaurant);
 

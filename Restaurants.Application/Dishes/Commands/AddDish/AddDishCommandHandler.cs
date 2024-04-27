@@ -25,7 +25,7 @@ public class AddDishCommandHandler(
 
         if (restaurant is null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
         
-        if (authorizationService.Authorize(restaurant, ResourceOperation.Update)) throw new ForbidException();
+        if (!authorizationService.Authorize(restaurant, ResourceOperation.Update)) throw new ForbidException();
         
         var dish = mapper.Map<Dish>(request);
         
