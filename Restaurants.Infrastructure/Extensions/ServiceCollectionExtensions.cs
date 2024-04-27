@@ -8,6 +8,7 @@ using Restaurants.Core.Domain.RepositoryContracts;
 using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Authorization.Constants;
 using Restaurants.Infrastructure.Authorization.Requirements;
+using Restaurants.Infrastructure.Authorization.Services;
 using Restaurants.Infrastructure.DatabaseContext;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -33,6 +34,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
         services.AddScoped<IDishesRepository, DishesRepository>();
 
+
         services.AddAuthorizationBuilder().AddPolicy(PolicyNames.HasNationality,
             policy => policy.RequireClaim(AppClaimTypes.Nationality, "Japanese"));
 
@@ -40,6 +42,7 @@ public static class ServiceCollectionExtensions
             policy => policy.AddRequirements(new MinimumAgeRequirement(20)));
 
         services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+        services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
     }
 
     public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)
