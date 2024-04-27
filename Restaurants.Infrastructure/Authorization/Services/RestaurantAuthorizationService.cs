@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Restaurants.Application.Users;
 using Restaurants.Core.Domain.Constants;
 using Restaurants.Core.Domain.Entities;
+using Restaurants.Core.Domain.ServiceContracts;
 
 namespace Restaurants.Infrastructure.Authorization.Services;
 

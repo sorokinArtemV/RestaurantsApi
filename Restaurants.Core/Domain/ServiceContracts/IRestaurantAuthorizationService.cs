@@ -1,6 +1,7 @@
 using Restaurants.Core.Domain.Entities;
+using Restaurants.Infrastructure.Authorization;
 
-namespace Restaurants.Infrastructure.Authorization.Services;
+namespace Restaurants.Core.Domain.ServiceContracts;
 
 public interface IRestaurantAuthorizationService
 {

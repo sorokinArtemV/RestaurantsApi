@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Core.Domain.Identity;
 using Restaurants.Core.Domain.RepositoryContracts;
+using Restaurants.Core.Domain.ServiceContracts;
 using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Authorization.Constants;
 using Restaurants.Infrastructure.Authorization.Requirements;
