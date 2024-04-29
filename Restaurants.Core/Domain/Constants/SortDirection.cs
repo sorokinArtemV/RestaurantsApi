@@ -1,4 +1,4 @@
-namespace Restaurants.Application.Common;
+namespace Restaurants.Core.Domain.Constants;
 
 public enum SortDirection
 {
