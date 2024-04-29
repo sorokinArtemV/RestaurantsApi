@@ -12,13 +12,15 @@ public class RestaurantsRepository(RestaurantsDbContext dbContext) : IRestaurant
         return await dbContext.Restaurants.ToListAsync();
     }
 
-    public async Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase)
+    public async Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase, int pageNumber, int pageSize)
     {
         var searchPhraseLower = searchPhrase?.ToLower();
 
         var restaurants = await dbContext.Restaurants
-            .Where(r => searchPhraseLower == null || (r.Name.ToLower().Contains(searchPhraseLower) ||
-                        r.Description.ToLower().Contains(searchPhraseLower)))
+            .Where(r => searchPhraseLower == null || r.Name.ToLower().Contains(searchPhraseLower) ||
+                        r.Description.ToLower().Contains(searchPhraseLower))
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
 
 
