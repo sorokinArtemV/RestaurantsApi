@@ -4,9 +4,10 @@ namespace Restaurants.Core.Domain.RepositoryContracts;
 
 public interface IRestaurantsRepository
 {
-    Task<IEnumerable<Restaurant>> GetAllAsync();
-    Task<Restaurant?> GetByIdAsync(int id);
-    Task<int> AddAsync(Restaurant entity);
-    Task<int> SaveChangesAsync();
-    Task DeleteAsync(Restaurant entity);
+    public Task<IEnumerable<Restaurant>> GetAllAsync();
+    public Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase);
+    public Task<Restaurant?> GetByIdAsync(int id);
+    public Task<int> AddAsync(Restaurant entity);
+    public Task<int> SaveChangesAsync();
+    public Task DeleteAsync(Restaurant entity);
 }
