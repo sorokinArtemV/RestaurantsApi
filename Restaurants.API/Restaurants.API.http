@@ -8,6 +8,10 @@ GET {{Restaurants.API_HostAddress}}/api/Restaurants
 Authorization: Bearer {{token}}
 
 ###
+GET {{Restaurants.API_HostAddress}}/api/Restaurants?searchPhrase=Wendy
+Authorization: Bearer {{token}}
+
+###
 
 GET {{Restaurants.API_HostAddress}}/api/Restaurants/4
 

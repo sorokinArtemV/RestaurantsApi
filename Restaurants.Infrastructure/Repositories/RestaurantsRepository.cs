@@ -14,11 +14,11 @@ public class RestaurantsRepository(RestaurantsDbContext dbContext) : IRestaurant
 
     public async Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase)
     {
-        var searchPhraseLower = searchPhrase.ToLower();
+        var searchPhraseLower = searchPhrase?.ToLower();
 
         var restaurants = await dbContext.Restaurants
-            .Where(r => r.Name.ToLower().Contains(searchPhraseLower) ||
-                        r.Description.ToLower().Contains(searchPhraseLower))
+            .Where(r => searchPhraseLower == null || (r.Name.ToLower().Contains(searchPhraseLower) ||
+                        r.Description.ToLower().Contains(searchPhraseLower)))
             .ToListAsync();
 
 
