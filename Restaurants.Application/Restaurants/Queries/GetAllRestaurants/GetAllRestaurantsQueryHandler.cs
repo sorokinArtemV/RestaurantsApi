@@ -12,19 +12,19 @@ public class GetAllRestaurantsQueryHandler(
     IRestaurantsRepository repository,
     IMapper mapper) : IRequestHandler<GetAllRestaurantsQuery, PagedResult<RestaurantDto>>
 {
-    public async Task<IEnumerable<RestaurantDto>> Handle(
+    public async Task<PagedResult<RestaurantDto>> Handle(
         GetAllRestaurantsQuery request,
         CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all restaurants");
 
-        var restaurants = await repository.GetAllMatchingAsync(
+        var (restaurants, totalCount) = await repository.GetAllMatchingAsync(
             request.SearchPhrase, request.PageNumber, request.PageSize);
         var restaurantsDto = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
         var result =
-            PagedResult<RestaurantDto>(restaurantsDto, restaurants.TotalCount, request.PageSize, request.PageNumber);
+            new PagedResult<RestaurantDto>(restaurantsDto, totalCount, request.PageSize, request.PageNumber);
 
-        return restaurantsDto;
+        return result;
     }
 }

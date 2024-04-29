@@ -2,7 +2,7 @@ namespace Restaurants.Application.Common;
 
 public class PagedResult<T>
 {
-    public PagedResult(List<T> items, int totalCount, int pageSize, int pageNumber)
+    public PagedResult(IEnumerable<T> items, int totalCount, int pageSize, int pageNumber)
     {
         Items = items;
         TotalItems = totalCount;
@@ -11,7 +11,7 @@ public class PagedResult<T>
         ItemsTo = ItemsFrom + pageSize - 1;
     }
 
-    public List<T> Items { get; set; }
+    public IEnumerable<T> Items { get; set; }
     public int TotalPages { get; set; }
     public int TotalItems { get; set; }
     public int ItemsFrom { get; set; }
