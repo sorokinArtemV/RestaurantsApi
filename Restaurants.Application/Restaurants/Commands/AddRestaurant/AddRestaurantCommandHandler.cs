@@ -8,7 +8,7 @@ using Restaurants.Core.Domain.RepositoryContracts;
 namespace Restaurants.Application.Restaurants.Commands.AddRestaurant;
 
 public class AddRestaurantCommandHandler(
-    ILogger<AddRestaurantCommand> logger,
+    ILogger<AddRestaurantCommandHandler> logger,
     IMapper mapper,
     IRestaurantsRepository repository,
     IUserContext userContext) : IRequestHandler<AddRestaurantCommand, int>
@@ -17,13 +17,13 @@ public class AddRestaurantCommandHandler(
     {
         var currentUser = userContext.GetCurrentUser();
 
-        logger.LogInformation("{UserEmail} [{UserId}] is adding new restaurant: {@Restaurant}", 
+        logger.LogInformation("{UserEmail} [{UserId}] is adding new restaurant: {@Restaurant}",
             currentUser.Email, currentUser.Id, request);
 
         var restaurant = mapper.Map<Restaurant>(request);
 
         restaurant.OwnerId = currentUser.Id;
-        
+
         var id = await repository.AddAsync(restaurant);
 
         return id;
