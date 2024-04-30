@@ -2,7 +2,7 @@ using FluentAssertions;
 using Restaurants.Application.Users;
 using Restaurants.Core.Domain.Constants;
 
-namespace z_Restaurants.ApplicationTests;
+namespace z_Restaurants.ApplicationTests.Users;
 
 public class CurrentUserTests
 {
@@ -12,30 +12,29 @@ public class CurrentUserTests
     public void IsInRole_ShouldReturnTrue_WhenRoleMatches(string roleName)
     {
         var currentUser = new CurrentUser("1", "test@qa.com", [UserRoles.Admin, UserRoles.User], null, null);
-        
+
         var isInRole = currentUser.IsInRole(roleName);
-        
+
         isInRole.Should().BeTrue();
     }
-    
+
     [Fact]
     public void IsInRole_ShouldReturnFalse_WhenRoleDoesNotMatch()
     {
         var currentUser = new CurrentUser("1", "test@qa.com", [UserRoles.Admin, UserRoles.User], null, null);
-        
+
         var isInRole = currentUser.IsInRole(UserRoles.Owner);
-        
+
         isInRole.Should().BeFalse();
     }
-    
+
     [Fact]
     public void IsInRole_ShouldReturnFalse_WhenRoleCasingDoesNotMatch()
     {
         var currentUser = new CurrentUser("1", "test@qa.com", [UserRoles.Admin, UserRoles.User], null, null);
-        
+
         var isInRole = currentUser.IsInRole(UserRoles.Admin.ToLower());
-        
+
         isInRole.Should().BeFalse();
     }
-    
 }
