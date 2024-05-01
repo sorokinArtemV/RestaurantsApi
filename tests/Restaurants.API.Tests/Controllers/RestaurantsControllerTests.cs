@@ -1,6 +1,7 @@
 using System.Net;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace z_Restaurants.API.Tests.Controllers;
 
@@ -19,17 +20,17 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
         var client = _factory.CreateClient();
 
         var result = await client.GetAsync("/api/restaurants?pageSize=10&pageNumber=1");
-        
+
         result.StatusCode.Should().Be(HttpStatusCode.OK);
     }
-    
+
     [Fact]
     public async Task GetAll_ShouldReturn400BadRequest_WhenRequestIsInvalid()
     {
         var client = _factory.CreateClient();
 
         var result = await client.GetAsync("/api/restaurants");
-        
+
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 }

@@ -44,6 +44,9 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program
+namespace Restaurants.API
 {
+    public partial class Program
+    {
+    }
 }
